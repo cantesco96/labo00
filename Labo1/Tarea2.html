@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>UnaiLabo1 2ªTarea</title>
+        <link rel="STYLESHEET" type="text/css" href="https://www.w3.org/StyleSheets/Core/parser.css?family=6&doc=XML">
+    </head>
+    <body>
+        <h1>Calculadora 2 operadores</h1>
+
+        <form id="myForm">
+        
+        <!------------------CASILLAS DE OPERADORES--------------------------->
+        
+            Operador de la izda:<br>
+            <input type="number" name="primerOP" id="primerOP">
+            <br> <br>
+            Operador de la dcha:<br>
+            <input type="number" name="segundoOP" id="segundoOP">
+            <br> <br>
+            
+          
+        <!----------------BOTONES DE SELECCIÓN------------------------------>
+        
+            Selecciona operación: 
+            <br> 
+             <input type="radio" name="op" value="suma"  id="suma" 
+             checked> +<br>
+         
+            <inpuT type="radio" name="op" value="resta"  id="resta" 
+             > -<br>
+         
+            <input type="radio" name="op" value="div"  id="div" 
+            > /<br>
+        
+            <input type="radio" name="op" value="mul"  id="mul" 
+             > *<br><br>
+             
+      <!----------------CASILLA DE RESULTADO------------------------------>
+        
+        Introduce resultado:
+        <input type="number" name="resultado" id="resultado">
+         <br> <br>
+        
+    
+       <!------------------BOTONES----------------------------------------->
+        
+         <input type="button" name="Comprobar" value="Comprobar" id="Comprobar">
+         <input type="button" name="Resetear" value="Resetear" id="Resetear">
+         <br>
+            
+            
+       <!----------------PÁRRAFO AUXILIAR---------------------------------->
+    
+        <h2 id="parrafo"></h2> 
+        
+        <!----------------IMÁGEN AUXILIAR ---------------------------------->
+ 
+       <img id="myImg">
+              
+ <!--¡¡¡AVISO: Las imágenes solo funcionan al abrir el archivo con el navegador!!!-->
+        
+        </form> 
+     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+
+     <script>
+        
+  //***************FUNCION DEL BOTON COMPROBAR*************//
+  
+     $(document).ready(function(){
+        $("#Comprobar").click(function(){
+            var primerOP =  parseInt($("#primerOP").val());
+            var segundoOP =  parseInt($("#segundoOP").val());
+            var operacion=$("input:radio[name=op]:checked").val();
+            var resultadoUS =  parseInt($("#resultado").val());
+            var resultado;
+            
+            if(operacion=="suma")
+                resultado=primerOP + segundoOP;
+            else if(operacion=="resta")
+                  resultado=primerOP-segundoOP; 
+            else if(operacion=="div")
+                 resultado=primerOP/segundoOP;
+            else 
+                 resultado=primerOP*segundoOP;
+                 
+       if(resultadoUS == resultado){
+           
+         //insertar texto
+           $("#parrafo").text("¡CORRECTO!"); //Si resultado coincide
+           $("#parrafo").css({'color':'green'});
+           
+         //insertar imágen
+            $("#myImg").attr("src","https://media.giphy.com/media/qjfeT5XdAirCg/giphy.gif");
+            $("#myImg").attr("width", "304");
+            $("#myImg").attr("height", "228");
+            
+          //Enseñar texto e imagen
+             $("#myImg").show();
+             $("#parrafo").show();
+             
+         }else{
+         
+         //insertar texto
+            $("#parrafo").text("¡INCORRECTO!"); //Si resultado no coincide
+            $("#parrafo").css({'color':'red'});
+           
+         //insertar imágen
+           $("#myImg").attr("src","https://difundir.org/wp-content/uploads/2016/03/tumblr_inline_nnbhbiIUHP1r2xhmf_500.gif");
+            $("#myImg").attr("width", "304");
+            $("#myImg").attr("height", "228");
+            
+          //Enseñar texto e imagen
+             $("#myImg").show();
+             $("#parrafo").show();
+         }
+         
+         
+         //***************FUNCION DEL BOTON RESETEAR*********//
+         
+           $("#Resetear").click(function(){
+                
+                $("#myImg").hide();
+                $("#parrafo").hide();
+                $("#myForm").trigger("reset");
+               
+               
+               });
+        
+            });
+            
+        });
+
+    
+       </script>
+  
+        
+    </body>
+</html>

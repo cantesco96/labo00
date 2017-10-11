@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>UnaiLabo1</title>
+		<link rel="STYLESHEET" type="text/css" href="https://www.w3.org/StyleSheets/Core/parser.css?family=6&doc=XML">
+    </head> 
+    <body>
+        <h1>Calculadora 2 operadores</h1>
+
+        <form id="myForm">
+        
+        <!------------------CASILLAS DE OPERADORES--------------------------->
+        julri bibo
+            Operador de la izda:<br>
+            <input type="number" name="primerOP" id="primerOP">
+            <br> <br>
+            Operador de la dcha:<br>
+            <input type="number" name="segundoOP" id="segundoOP">
+            <br> <br>
+            
+          
+        <!----------------BOTONES DE SELECCIÓN------------------------------>
+        
+            Selecciona operación: 
+            <br> 
+             <input type="radio" name="op" value="suma"  id="suma" 
+             checked> +<br>
+         
+            <input type="radio" name="op" value="resta"  id="resta" 
+             > -<br>
+         
+            <input type="radio" name="op" value="div"  id="div" 
+            > /<br>
+        
+            <input type="radio" name="op" value="mul"  id="mul" 
+             > *<br><br>
+             
+      <!----------------CASILLA DE RESULTADO------------------------------>
+        
+        Introduce resultado:
+        <input type="number" name="resultado" id="resultado">
+         <br> <br>
+        
+    
+       <!------------------BOTONES----------------------------------------->
+        
+         <input type="button" name="Comprobar" value="Comprobar" onclick="check()">
+         <input type="button" name="Resetear" value="Resetear" onclick="resetear()">
+         <br>
+            
+            
+       <!----------------PÁRRAFO AUXILIAR---------------------------------->
+    
+        <h2 id="parrafo"></h2> 
+        
+        <!----------------IMÁGEN AUXILIAR ---------------------------------->
+ 
+       <img id="myImg">
+              
+ <!--¡¡¡AVISO: Las imágenes solo funcionan al abrir el archivo con el navegador!!!-->
+        
+        </form> 
+     
+     
+ <script>
+       
+
+    function check() {
+        
+     //**********************INICIALIZACIONES DE VARIABLES************************//
+     
+       //Variables que guardan el contenido de las casillas de operadores
+          var primerOP =  parseInt(document.getElementById("primerOP").value);
+          var segundoOP = parseInt(document.getElementById("segundoOP").value);
+          
+       //Variable que guarda el resultado predecido por el usuario
+          var resultadoUS = parseInt(document.getElementById("resultado").value); 
+    
+          var parrafo = document.getElementById("parrafo");  //El párrafo auxiliar
+          var imagen =  document.getElementById("myImg");  //La imágen auxiliar
+          var resultado;  //Guardará el verdadero resultado de la operación
+          
+     //****************************************************************************//
+       
+            
+       //Comprobar la operación a realizar y guuardar el resultado
+         if(document.getElementById("suma").checked == true)
+             resultado=primerOP + segundoOP;
+         else if(document.getElementById("resta").checked == true)
+              resultado=primerOP-segundoOP; 
+         else if(document.getElementById("div").checked == true)
+             resultado=primerOP/segundoOP;
+         else 
+             resultado=primerOP*segundoOP;
+             
+       //Comprobar el verdadero resultado con el que el usuario predice
+        if(resultadoUS == resultado){
+         //insertar texto
+           parrafo.innerHTML= "¡CORRECTO!"; //Si los resultados coinciden
+           parrafo.setAttribute("style","color:green");
+           
+         //insertar imágen
+           imagen.setAttribute("src", "https://media.giphy.com/media/qjfeT5XdAirCg/giphy.gif");
+           imagen.setAttribute("width", "304");
+           imagen.setAttribute("height", "228");
+           
+           
+         }else{
+         
+         //insertar texto
+           parrafo.innerHTML="¡INCORRECTO!"; //Si los resultados no coinciden
+           parrafo.setAttribute("style","color:red");
+           
+         //insertar imágen
+           imagen.setAttribute("src", "https://difundir.org/wp-content/uploads/2016/03/tumblr_inline_nnbhbiIUHP1r2xhmf_500.gif");
+           imagen.setAttribute("width", "304");
+           imagen.setAttribute("height", "228");
+         }
+             
+       }
+       
+    function resetear() {
+           
+          var parrafo = document.getElementById("parrafo");  //El párrafo auxiliar
+          var imagen =  document.getElementById("myImg");  //La imágen auxiliar
+           document.getElementById("myForm").reset();
+           parrafo.innerHTML="";
+           imagen.setAttribute("src", "");
+           imagen.setAttribute("width", "0");
+           imagen.setAttribute("height", "0");
+        }
+
+       </script>
+        
+    </body>
+</html>
