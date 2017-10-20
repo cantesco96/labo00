@@ -51,6 +51,11 @@
             <input type="text" name="email" id="email">
 			<br><br>
 			
+			 Enunciado de la pregunta*:
+            <input type="text" name="enunciado" id="enunciado">
+            <br><br>
+			
+			
 			 Respuesta correcta*:
             <input type="text" name="correct" id="correct">
             <br><br>
@@ -99,7 +104,7 @@
 	   
 	     $("#enviar").click(function(){
 		    
-				if($("#email").val().length <= 0 | $("#correct").val().length <= 0 | $("#incorrect1").val().length <= 0){
+				if($("#enunciado").val().length <= 0 | $("#email").val().length <= 0 | $("#correct").val().length <= 0 | $("#incorrect1").val().length <= 0){
 				   alert("Rellena los campos señalados (*)");
 				   return(false);
 				}else if ($("#incorrect2").val().length <= 0 | $("#incorrect3").val().length <= 0 | $("#complejidad").val().length <= 0){

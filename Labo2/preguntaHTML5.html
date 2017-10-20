@@ -40,13 +40,18 @@
 <tr> 
    <td bgcolor="#F4ED8E"> 
    <font face="arial, verdana, helvetica"> 
-	   <form id='fpreguntas' name='fpreguntas' action='Prueba.php' method="POST">
+	   <form id='fpreguntas' name='fpreguntas' action='insertarPregunta.php' method="POST">
         
         <!------------------FORMULARIO PARA INSERTAR PREGUNTA--------------------------->
         <br>
              E-mail*:
             <input type="email" name="email" id="email"  pattern="[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="ej: nombre123@ikasle.ehu.es" required>
 			<br><br>
+			
+			
+			Enunciado de la pregunta*:
+            <input type="text" name="enunciado" id="enunciado" required>
+            <br><br>
 			
 			 Respuesta correcta*:
             <input type="text" name="correct" id="correct"  required>
@@ -65,7 +70,7 @@
 			<br><br>
 			
 			Complejidad(1..5)*:
-            <input type="number" name="comlejidad" id="complejidad" min="1" max="5"  required>
+            <input type="number" name="complejidad" id="complejidad" min="1" max="5"  required>
 			<br><br>
 			
 			Tema:
