@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	   <form id='fpreguntas' name='fpreguntas' action='insertarPreguntaConFoto.php' method="POST" enctype="multipart/form-data">
+        
+        <!------------------FORMULARIO PARA RELLENAR-------------------------->
+        <br>
+             E-mail*:
+            <input type="email" name="email" id="email" pattern="[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(es|eus)" placeholder="ej: nombre123@ikasle.ehu.es" required>
+			<br><br>
+			
+			
+			Nombre:
+            <input type="text" name="nombre" id="nombre" >
+            <br><br>
+			
+			Apellidos*:
+            <input type="text" name="apellidos" id="apellidos"  >
+            <br><br>
+			
+            Telefono*:
+            <input type="text" name="telefono" id="telefono"  >
+			<br><br>
+		 
+		    <input type="button" name="completar" value="Completar datos" id="completar">
+            <input type="reset" name="Resetear" value="Resetear" id="Resetear">
+            <br>
+        </form> 
+   </td> 
+</tr> 
+</table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<script>
+	
+	 
+	  $("#completar").click(function(){
+					$.get('usuarios.xml', function(d){  
+					var email = $("#email").val();
+					var listacorreos = $(d).find('email');    
+					for (var i = 0; i < listacorreos.length; i++)    {     
+						if(listacorreos[i].childNodes[0].nodeValue==email){
+							    var listaNombres = $(d).find('nombre');
+								$("#nombre").val(listaNombres[i].childNodes[0].nodeValue);
+								var listaApellido1 = $(d).find('apellido1');
+								var listaApellido2 = $(d).find('apellido2')
+								$("#apellidos").val(listaApellido1[i].childNodes[0].nodeValue + " " + listaApellido2[i].childNodes[0].nodeValue);
+								var listaTelefono = $(d).find('telefono');
+								$("#telefono").val(listaTelefono[i].childNodes[0].nodeValue);
+							  }
+							}  
+							}) 
+					
+					
+					});
+		
+    
+		
+	   </script>
+</html>

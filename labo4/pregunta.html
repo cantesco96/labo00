@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+	
+	function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+     }
+	
+	</script>
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>Preguntas</title>
+    <link rel='stylesheet' type='text/css' href='estilos/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='estilos/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='estilos/smartphone.css' />
+  </head>
+  <body>
+  <div id='page-wrap'>
+	<header class='main' id='h1'>
+			<h3> Hola, <script> document.write(getParameterByName("nick")) </script> </h3>
+			<img id="fotoPerfil"><br>
+      		<span class="right"><a href="layout.html" id="logout">Logout</a></span>
+      		<span class="right" style="display:none;"><a href="/logout" id="logout">Logout</a></span>
+		<h2>Quiz: el juego de las preguntas</h2>
+    </header>
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='' id="layout">Inicio</a></span><br><br>
+		<span><a href='' id="pregunta">Insertar Preguntas</a></span><br><br>
+		<span><a href='' id="preguntaHTML5">Insertar pregunta con HTML5</a></span><br><br>
+		<span><a href='' id="gestion">Gestionar preguntas</a></span><br><br>
+		<span><a href='' id="creditos">Creditos</a></span><br><br>
+		
+	</nav>
+    <section class="main" id="s1">
+    
+	<div>
+
+	   
+	
+	<table width="770" cellspacing="5" cellpadding="3" border="0" bgcolor="#4177BF"> 
+<tr> 
+   <td><font color="#FFFFFF" face="arial, verdana, helvetica"> 
+<b>Datos de la pregunta</b> 
+   </font></td> 
+</tr> 
+<tr> 
+   <td bgcolor="#F4ED8E"> 
+   <font face="arial, verdana, helvetica"> 
+   <form id='fpreguntas' name='fpreguntas' action='insertarPregunta.php' method="POST">
+        
+        <!------------------FORMULARIO PARA INSERTAR PREGUNTA--------------------------->
+        <br>
+             E-mail*:
+            <input type="text" name="email" id="email" readonly>
+			<br><br>
+			
+			 Enunciado de la pregunta*:
+            <input type="text" name="enunciado" id="enunciado">
+            <br><br>
+			
+			
+			 Respuesta correcta*:
+            <input type="text" name="correct" id="correct">
+            <br><br>
+			
+            Respuesta incorrecta*:
+            <input type="text" name="incorrect1" id="incorrect1">
+			<br><br>
+			
+			Respuesta incorrecta*:
+            <input type="text" name="incorrect2" id="incorrect2">
+			<br><br>
+			
+			Respuesta incorrecta*:
+            <input type="text" name="incorrect3" id="incorrect3">
+			<br><br>
+			
+			Complejidad(1..5)*:
+            <input type="number" name="complejidad" id="complejidad">
+			<br><br>
+			
+			Tema:
+            <input type="text" name="tema" id="tema">
+			<br><br>
+			
+			Inserta una imagen:
+			<input type="file" name="imagen" id="imagen" onchange="subirImg()">
+			<br><br>
+			<img id="imagen2">
+			<br><br>
+		
+		    <!------------------BOTONES----------------------------------------->
+        
+            <input type="submit" name="enviar" value="Enviar solicitud" id="enviar">
+            <input type="reset" name="Resetear" value="Resetear" id="Resetear">
+            <br><br>
+		 
+		 
+        </form> 
+   </font> 
+   </td> 
+</tr> 
+</table>
+	   <script>
+	   
+	      var nick= getParameterByName("nick");
+		 var email= getParameterByName("email");
+		 var fotoPerfil=getParameterByName("foto");
+		 var preguntaURL= "pregunta.html?logged=si&nick=" + nick+ "&email=" + email + "&foto=" + fotoPerfil; 
+		 var preguntaHTML5URL= "preguntaHTML5.html?logged=si&nick=" + nick+ "&email=" + email + "&foto=" + fotoPerfil; 
+		 var preguntaHTML5URL= "preguntaHTML5.html?logged=si&nick=" + nick+ "&email=" + email + "&foto=" + fotoPerfil; 
+		 var gestionURL=  "GestionarPreguntas.php?logged=si&nick=" + nick+ "&email=" + email + "&foto=" + fotoPerfil; 
+		 var creditosURL= "creditosLogged.html?nick=" + nick + "&email=" + email + "&foto=" + fotoPerfil;
+		 var layoutURL=  "layoutLogged.html?nick=" + nick + "&email=" + email + "&foto=" + fotoPerfil;
+		 $("#pregunta").attr("href", preguntaURL);
+		 $("#preguntaHTML5").attr("href", preguntaHTML5URL);
+		 $("#gestion").attr("href", gestionURL);
+		 $("#layout").attr("href", layoutURL);
+		 $("#creditos").attr("href", creditosURL);
+		 $("#email").attr("value", email);
+		 if(fotoPerfil != "" & fotoPerfil != null){
+		   $("#fotoPerfil").attr("src", fotoPerfil);
+		   $("#fotoPerfil").attr("height", "80");
+		  
+		 }
+		  
+	  
+	   
+		   function subirImg(){
+					var input = document.getElementById("imagen");
+					var reader = new FileReader();
+					reader.onload = function(){
+					  var dataURL = reader.result;
+					  var imagen2 =  document.getElementById("imagen2");
+					  imagen2.setAttribute("src", dataURL);
+					  imagen2.setAttribute("width", "135");
+					  imagen2.setAttribute("height", "135");
+					};
+					reader.readAsDataURL(input.files[0]);		
+				}
+
+			     $("#logout").click(function(){
+					alert("Hasta pronto, " + nick) 
+					});
+					
+			   $("#Resetear").click(function(){
+					
+					$("#imagen2").hide();    
+					
+					});
+					
+				$(document).ready(function(){
+					var logged = getParameterByName('logged');
+					if(logged != "si"){
+					   alert("Debes identificarte para acceder a esta fución");
+					   window.history.back();	
+					}
+				});
+					
+		</script>
+	</div>
+    </section>
+	<footer class='main' id='f1'>
+		<p><a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">Que es un Quiz?</a></p>
+		<a href='https://github.com'>Link GITHUB</a>
+	</footer>
+</div>
+</body>
+</html>
